@@ -39,12 +39,15 @@ export const EmailTemplateUser: React.FC<Readonly<EmailTemplateProps>> = ({
                 />
                 <Img
                     src={`${baseUrl}/david.png`}
-                    width="50px"
-                    style={{ margin: '0 auto' }}
+                    width="100px"
+                    style={{ margin: '40px auto 0 auto' }}
                     alt="Sir David"
                 />
                 <Heading style={{ ...h1, textAlign: 'center' }}>Thank you for playing! We hope to see you again in the realms of time!</Heading>
                 <Text style={{ ...h2, textAlign: 'center' }}>Attached you will find your postcards, captured after completing your Time Touched Village.</Text>
+                <a href="https://timetouchedvillage.nl" style={{ textDecoration: 'none' }} target='_blank' rel='noreferrer'>
+                    <Text style={{ ...button, textAlign: 'center' }}>Play Again</Text>
+                </a>
                 <Img
                     src={`${baseUrl}/favicon.png`}
                     width="32"
@@ -86,6 +89,20 @@ const h1 = {
     fontWeight: 'bold',
     margin: '40px 0',
     padding: '0',
+};
+
+const button = {
+    color: '#0A431A',
+    fontFamily:
+        "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    fontSize: '24px',
+    fontWeight: 'bold',
+    margin: '40px auto 40px auto',
+    padding: '20px 20px',
+    borderRadius: '200px',
+    backgroundColor: "#2DE160",
+    width: 'fit-content',
+    textDecoration: "none"
 };
 
 const h2 = {
