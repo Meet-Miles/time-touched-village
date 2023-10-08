@@ -33,19 +33,26 @@ export const EmailTemplateUser: React.FC<Readonly<EmailTemplateProps>> = ({
                 />
                 <Img
                     src={`${baseUrl}/logo-colour.png`}
-                    width="70%"
+                    width="40%"
                     style={{ margin: '0 auto' }}
                     alt="Logo for TTV"
                 />
-                <Heading style={h1}>Thank you for playing! We hope to see you again in the realms of time!</Heading>
-                <Text style={h2}>Attached you will find your postcards, captured after completing your Time Touched Village.</Text>
+                <Img
+                    src={`${baseUrl}/david.png`}
+                    width="40%"
+                    style={{ margin: '0 auto' }}
+                    alt="Sir David"
+                />
+                <Heading style={{ ...h1, textAlign: 'center' }}>Thank you for playing! We hope to see you again in the realms of time!</Heading>
+                <Text style={{ ...h2, textAlign: 'center' }}>Attached you will find your postcards, captured after completing your Time Touched Village.</Text>
                 <Img
                     src={`${baseUrl}/favicon.png`}
                     width="32"
                     height="32"
                     alt="TTV Logo"
+                    style={{ margin: '0 auto' }}
                 />
-                <Text style={footer}>
+                <Text style={{ ...footer, textAlign: 'center' }}>
                     <Link
                         href="https://timetouchedvillage.nl"
                         target="_blank"
