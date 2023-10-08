@@ -16,27 +16,27 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             attachments: [
                 {
                     filename: "postcard-1.png",
-                    path: "https://timetouchedvillage.nl/postcard-1.png",
+                    path: "https://timetouchedvillage.nl/postcard-1.webp",
                 },
                 {
                     filename: "postcard-2.png",
-                    path: "https://timetouchedvillage.nl/postcard-2.png",
+                    path: "https://timetouchedvillage.nl/postcard-2.webp",
                 },
                 {
                     filename: "postcard-3.png",
-                    path: "https://timetouchedvillage.nl/postcard-3.png",
+                    path: "https://timetouchedvillage.nl/postcard-3.webp",
                 },
                 {
                     filename: "postcard-4.png",
-                    path: "https://timetouchedvillage.nl/postcard-4.png",
+                    path: "https://timetouchedvillage.nl/postcard-4.webp",
                 },
                 {
                     filename: "postcard-5.png",
-                    path: "https://timetouchedvillage.nl/postcard-5.png",
+                    path: "https://timetouchedvillage.nl/postcard-5.webp",
                 },
                 {
                     filename: "postcard-6.png",
-                    path: "https://timetouchedvillage.nl/postcard-6.png",
+                    path: "https://timetouchedvillage.nl/postcard-6.webp",
                 },
             ],
         })
