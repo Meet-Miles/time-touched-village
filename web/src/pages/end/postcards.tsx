@@ -38,8 +38,11 @@ const PostCards: React.FC = () => {
                 setTimeout(() => {
                     if (audioRef.current) {
                         audioRef.current.src = '/audio/ending/mid.mp3';
+                        setIsNarrationPlaying(true);
                         audioRef.current.play();
-
+                        audioRef.current.onended = () => {
+                            setIsNarrationPlaying(false);
+                        };
                     }
                 }, 500);
                 break;
@@ -137,13 +140,13 @@ const PostCards: React.FC = () => {
             <img src="/dinoguide.svg" className={`  fixed top-8 right-1/2 left-1/2 -ml-16 animate-[bounce_0.7s_ease-in-out_infinite]  z-50 w-32 h-32 transition-all duration-500 ${isNarrationPlaying ? `opacity-100` : `opacity-0`}`} alt="" />
             {/* card */}
             <div className="relative flex flex-col items-center gap-8">
-                <img src="/logo-white.svg" alt="Logo" className=" h-16 " />
+                <img src="/logo-white.svg" alt="Logo" className=" h-32 " />
                 <p className="text-white/75 text-3xl max-w-4xl text-center">What a sight to behold! This adventure was a great success, thanks to your thoughtful decisions. You can get a screenshot of our Time-Touched Village sent to your email to keep as a memento of this fantastic journey.</p>
                 <p className="text-white/75 text-3xl max-w-4xl text-center">Just enter your email address below, and we&apos;ll send it right over to you!</p>
             </div>
 
             <form onSubmit={handleSubmit} className="relative z-10 flex flex-col items-center gap-8">
-                <input type="email" name="EMAIL" required id="email" placeholder="Your e-mail address..." className="bg-white rounded-full text-center px-8 py-4 text-6xl placeholder:opacity-40 outline-none" />
+                <input type="email" name="EMAIL" required id="email" placeholder="Your e-mail address..." className="bg-white cursor-pointer rounded-full text-center px-8 py-4 text-6xl placeholder:opacity-40 outline-none" />
                 <div className="flex gap-4">
                     <Link href={"/end/farewell"}>
                         <div className="button bg-white text-black" onClick={() => {
