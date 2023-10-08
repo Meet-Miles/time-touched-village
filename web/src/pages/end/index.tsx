@@ -56,7 +56,7 @@ const End: React.FC = () => {
             <div className="absolute w-full h-full">
                 <div className="bg-black/100 w-full h-full absolute top-0 right-0 left-0 bottom-0"></div>
             </div>
-            <img src="/dinoguide.svg" className={` animate-[bounce_0.7s_ease-in-out_infinite] fixed top-32 right-8  z-50 w-32 h-32 transition-all duration-500 ${isNarrationPlaying ? `opacity-100` : `opacity-0`}`} alt="" />
+            <img src="/dinoguide.svg" className={`  fixed top-8 right-1/2 left-1/2 -ml-16 animate-[bounce_0.7s_ease-in-out_infinite]  z-50 w-32 h-32 transition-all duration-500 ${isNarrationPlaying ? `opacity-100` : `opacity-0`}`} alt="" />
 
             {/* card */}
             <div className="relative flex flex-col items-center gap-8">
