@@ -156,7 +156,7 @@ const PostCards: React.FC = () => {
                 {isSubmitted && <p className="text-white/75 text-3xl max-w-4xl text-center">Postcards sent!</p>}
             </form>
 
-            <img src="/postcards.png" className="w-full max-w-7xl m-auto fixed -bottom-[10%]" alt="" />
+            <img src="/postcards.webp" className="w-full max-w-7xl m-auto fixed -bottom-[10%]" alt="" />
             {/* audio refs */}
             <audio ref={audioRef} />
             <audio ref={clickSoundRef} />
