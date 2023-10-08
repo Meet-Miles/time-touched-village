@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import localFont from 'next/font/local'
+import Head from 'next/head'
 
 const platform = localFont({
   src: [
@@ -19,5 +20,11 @@ const platform = localFont({
 })
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <main className={`${platform.variable}`}><Component {...pageProps} /></main>
+  return <main className={`${platform.variable}`}>
+    <Head>
+      <title>Time Touched Village</title>
+      <link rel="icon" href="/favicon.png" />
+    </Head>
+    <Component {...pageProps} />
+  </main>
 }
