@@ -39,7 +39,7 @@ export const EmailTemplateUser: React.FC<Readonly<EmailTemplateProps>> = ({
                 />
                 <Img
                     src={`${baseUrl}/david.png`}
-                    width="40%"
+                    width="50px"
                     style={{ margin: '0 auto' }}
                     alt="Sir David"
                 />
