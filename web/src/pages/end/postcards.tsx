@@ -6,7 +6,7 @@ const PostCards: React.FC = () => {
     const [currentStep, setCurrentStep] = useState<'title' | 'sent'>('title');
     const [isLoading, setLoading] = useState(false);
     const [isSubmitted, setSubmitted] = useState(false);
-
+    const [isNarrationPlaying, setIsNarrationPlaying] = useState(false);
     const clickSoundRef = useRef<HTMLAudioElement>(null);
     const audioRef = useRef<HTMLAudioElement>(null);
     const musicRef = useRef<HTMLAudioElement>(null);
@@ -27,7 +27,7 @@ const PostCards: React.FC = () => {
                 musicRef.current.volume = 0.2;  // Reset the volume
                 musicRef.current.play();
             }
-        }, 500); // Delay for 2 seconds
+        }, 0); // Delay for 2 seconds
     }, []);
 
     const router = useRouter()
@@ -108,7 +108,11 @@ const PostCards: React.FC = () => {
             setTimeout(() => {
                 if (audioRef.current) {
                     audioRef.current.src = '/audio/ending/postcards.mp3';
+                    setIsNarrationPlaying(true);
                     audioRef.current.play();
+                    audioRef.current.onended = () => {
+                        setIsNarrationPlaying(false);
+                    };
                 }
             }, 0);
             setSubmitted(true);
@@ -130,7 +134,7 @@ const PostCards: React.FC = () => {
             <div className="absolute w-full h-full overflow-hidden">
                 <div className="bg-black/100 w-full h-full absolute top-0 right-0 left-0 bottom-0"></div>
             </div>
-
+            <img src="/dinoguide.svg" className={` animate-[bounce_0.7s_ease-in-out_infinite] fixed top-32 right-8  z-50 w-32 h-32 transition-all duration-500 ${isNarrationPlaying ? `opacity-100` : `opacity-0`}`} alt="" />
             {/* card */}
             <div className="relative flex flex-col items-center gap-8">
                 <img src="/logo-white.svg" alt="Logo" className=" h-16 " />

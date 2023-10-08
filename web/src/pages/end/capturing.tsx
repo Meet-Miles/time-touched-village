@@ -27,7 +27,7 @@ const Capturing: React.FC = () => {
                 musicRef.current.volume = 0.5;  // Reset the volume
                 musicRef.current.play();
             }
-        }, 500); // Delay for 2 seconds
+        }, 0); // Delay for 2 seconds
 
         // Set timeout to show button after 15 seconds
         const buttonTimeout = setTimeout(() => {

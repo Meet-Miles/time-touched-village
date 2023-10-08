@@ -9,7 +9,7 @@ const Intro: React.FC = () => {
     const clickSoundRef = useRef<HTMLAudioElement>(null);
     const audioRef = useRef<HTMLAudioElement>(null);
     const musicRef = useRef<HTMLAudioElement>(null);
-
+    const [isNarrationPlaying, setIsNarrationPlaying] = useState(false);
     const playClickSound = () => {
         if (clickSoundRef.current) {
             console.log(clickSoundRef.current);
@@ -37,20 +37,25 @@ const Intro: React.FC = () => {
                 setTimeout(() => {
                     if (audioRef.current) {
                         audioRef.current.src = '/audio/intro/intro.mp3';
+                        setIsNarrationPlaying(true);
                         audioRef.current.play();
                         audioRef.current.onended = () => {
                             setCurrentStep('ready');
                         };
                     }
-                }, 2000);
+                }, 500);
                 break;
             case 'ready':
                 setTimeout(() => {
                     if (audioRef.current) {
                         audioRef.current.src = '/audio/intro/ready-to-begin.mp3';
+                        setIsNarrationPlaying(true);
                         audioRef.current.play();
+                        audioRef.current.onended = () => {
+                            setIsNarrationPlaying(false);
+                        };
                     }
-                }, 1000);
+                }, 500);
                 break;
         }
     }, [currentStep])
@@ -70,7 +75,7 @@ const Intro: React.FC = () => {
                 />
                 <div className="bg-black/50 w-full h-full absolute top-0 right-0 left-0 bottom-0"></div>
             </div>
-
+            <img src="/dinoguide.svg" className={` animate-[bounce_0.7s_ease-in-out_infinite] fixed top-32 right-8  z-50 w-32 h-32 transition-all duration-500 ${isNarrationPlaying ? `opacity-100` : `opacity-0`}`} alt="" />
             <img src="/logo-white.svg" alt="Logo" className="fixed h-16 top-8 left-8 z-50" />
 
             {/* card */}
