@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
@@ -89,7 +90,7 @@ const HowToPlay: React.FC = () => {
             <div className="relative flex flex-col items-center gap-8">
                 <img src="/compass.svg" className="w-16 h-16" alt="" />
                 <h1 className="text-6xl text-red">How To Play?</h1>
-                <div className="grid grid-cols-2 items-center gap-8 p-8">
+                <div className="grid grid-cols-2 items-center gap-8 p-8 max-w-7xl m-auto">
                     <div className="flex flex-col gap-8">
                         <div className="flex items-center gap-8">
                             <img className="w-[100px] " src="/buttons.svg" alt="" />
@@ -111,22 +112,23 @@ const HowToPlay: React.FC = () => {
             </div>
 
             <div className="relative flex gap-8">
-                <button className="button bg-black" onClick={() => {
+                <Link href='/intro'>
+
+                    <div className="button bg-black" onMouseDown={() => {
+                        playClickSound();
+                    }}>
+                        <img src="/arrow.svg" alt="" />
+                    </div>
+                </Link>
+                <Link href='/game' onMouseDown={() => {
                     playClickSound();
-                    setTimeout(() => {
-                        router.push("/intro");
-                    }, 1000)
                 }}>
-                    <img src="/arrow.svg" alt="" />
-                </button>
-                <button className="button bg-green text-darkGreen" onClick={() => {
-                    playClickSound();
-                    setTimeout(() => {
-                        router.push("/game");
-                    }, 1000)
-                }}>
-                    Let&apos;s Start
-                </button>
+                    <div className="button bg-green text-darkGreen" onMouseDown={() => {
+                        playClickSound();
+                    }}>
+                        Let&apos;s Start
+                    </div>
+                </Link>
             </div>
 
             {/* audio refs */}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
@@ -60,23 +61,23 @@ const Farewell: React.FC = () => {
 
             <div className="relative flex flex-col gap-8">
                 <div className="flex gap-4">
-                    <button className="button bg-white text-black" onClick={() => {
-                        playClickSound();
-                        setTimeout(() => {
-                            router.push("/");
-                        }, 1000)
-                    }}>
-                        Go Home
+                    <Link href="/">
+                        <div className="button bg-white text-black" onClick={() => {
+                            playClickSound();
 
-                    </button>
-                    <button className="button bg-green text-darkGreen" onClick={() => {
-                        playClickSound();
-                        setTimeout(() => {
-                            router.push("/intro/how-to-play");
-                        }, 1000)
-                    }}>
-                        Play Again
-                    </button>
+                        }}>
+                            Go Home
+
+                        </div>
+                    </Link>
+                    <Link href="/intro/how-to-play" >
+                        <div className="button bg-green text-darkGreen" onClick={() => {
+                            playClickSound();
+
+                        }}>
+                            Play Again
+                        </div>
+                    </Link>
                 </div>
                 <p className="text-white/75 hover:text-white/100 transition-all cursor-pointer underline text-4xl text-center mt-16">What did you think?</p>
             </div>

@@ -1,4 +1,5 @@
 import MuxPlayer from "@mux/mux-player-react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
@@ -82,22 +83,20 @@ const Intro: React.FC = () => {
             </div>
 
             <div className="relative flex gap-8">
-                <button className="button bg-black" onClick={() => {
-                    playClickSound();
-                    setTimeout(() => {
-                        router.push("/");
-                    }, 1000)
-                }}>
-                    <img src="/arrow.svg" alt="" />
-                </button>
-                <button className="button bg-yellow text-darkYellow" onClick={() => {
-                    playClickSound();
-                    setTimeout(() => {
-                        router.push("/intro/how-to-play");
-                    }, 1000)
-                }}>
-                    Next
-                </button>
+                <Link href="/">
+                    <div className="button bg-black" onMouseDown={() => {
+                        playClickSound();
+                    }}>
+                        <img src="/arrow.svg" alt="" />
+                    </div>
+                </Link>
+                <Link href="/intro/how-to-play">
+                    <div className="button bg-yellow text-darkYellow" onMouseDown={() => {
+                        playClickSound();
+                    }}>
+                        Next
+                    </div>
+                </Link>
             </div>
 
             {/* audio refs */}

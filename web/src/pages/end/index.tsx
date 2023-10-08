@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
@@ -62,14 +63,13 @@ const End: React.FC = () => {
             </div>
 
             <div className="relative flex gap-8">
-                <button className="button bg-green text-darkGreen" onClick={() => {
-                    playClickSound();
-                    setTimeout(() => {
-                        router.push("/end/capturing");
-                    }, 1000)
-                }}>
-                    Capture this Moment
-                </button>
+                <Link href="/end/capturing" >
+                    <div className="button bg-green text-darkGreen" onMouseDown={() => {
+                        playClickSound();
+                    }}>
+                        Capture this Moment
+                    </div>
+                </Link>
             </div>
 
             {/* audio refs */}

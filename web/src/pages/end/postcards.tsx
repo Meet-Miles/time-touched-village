@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
@@ -140,14 +141,14 @@ const PostCards: React.FC = () => {
             <form onSubmit={handleSubmit} className="relative z-10 flex flex-col items-center gap-8">
                 <input type="email" name="EMAIL" required id="email" placeholder="Your e-mail address..." className="bg-white rounded-full text-center px-8 py-4 text-6xl placeholder:opacity-40 outline-none" />
                 <div className="flex gap-4">
-                    <button className="button bg-white text-black" onClick={() => {
-                        playClickSound();
-                        setTimeout(() => {
-                            router.push("/end/farewell");
-                        }, 1000)
-                    }}>
-                        Skip
-                    </button>
+                    <Link href={"/end/farewell"}>
+                        <div className="button bg-white text-black" onClick={() => {
+                            playClickSound();
+
+                        }}>
+                            Skip
+                        </div>
+                    </Link>
                     <input type="submit" value={'Send!'} className='button bg-green text-darkGreen' />
 
                 </div>

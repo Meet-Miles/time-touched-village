@@ -1,4 +1,5 @@
 import MuxPlayer from "@mux/mux-player-react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
@@ -58,19 +59,19 @@ const Capturing: React.FC = () => {
             </div>
 
             <div className="relative flex gap-8">
-                <button
-                    style={{
-                        opacity: showButton ? 1 : 0,
-                        transition: 'all 1s ease' // Add transition effect for 1 second
-                    }}
-                    className="button bg-white text-black z-50" onClick={() => {
-                        playClickSound();
-                        setTimeout(() => {
-                            router.push("/end/postcards");
-                        }, 1000)
-                    }}>
-                    Skip
-                </button>
+                <Link href="/end/postcards">
+                    <div
+                        style={{
+                            opacity: showButton ? 1 : 0,
+                            transition: 'all 1s ease' // Add transition effect for 1 second
+                        }}
+                        className="button bg-white text-black z-50" onClick={() => {
+                            playClickSound();
+
+                        }}>
+                        Skip
+                    </div>
+                </Link>
             </div>
 
             {/* audio refs */}
