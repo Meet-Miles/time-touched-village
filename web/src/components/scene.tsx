@@ -244,6 +244,9 @@ const Scene: React.FC<SceneProps> = ({ data, onChoiceSelected }) => {
                                 onEnded={() => {
                                     setCurrentStep('correctAnswer');
                                 }}
+                                onPlaying={() => {
+                                    setIsNarrationPlaying(false);
+                                }}
                             />
                             {/* <video ref={videoRef} className='h-full w-full object-cover object-center' src={data.video} onEnded={() => {
                                 setCurrentStep('correctAnswer');
