@@ -2,7 +2,9 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
 const PostCards: React.FC = () => {
-    const [currentStep, setCurrentStep] = useState<'title' | 'tip1' | 'tip2' | 'tip3'>('title');
+    const [currentStep, setCurrentStep] = useState<'title' | 'sent'>('title');
+    const [isLoading, setLoading] = useState(false);
+    const [isSubmitted, setSubmitted] = useState(false);
 
     const clickSoundRef = useRef<HTMLAudioElement>(null);
     const audioRef = useRef<HTMLAudioElement>(null);
@@ -36,9 +38,7 @@ const PostCards: React.FC = () => {
                     if (audioRef.current) {
                         audioRef.current.src = '/audio/ending/mid.mp3';
                         audioRef.current.play();
-                        audioRef.current.onended = () => {
-                            setCurrentStep('tip1');
-                        };
+
                     }
                 }, 500);
                 break;
@@ -46,6 +46,82 @@ const PostCards: React.FC = () => {
             default:
         }
     }, [currentStep])
+
+    // Handles the submit event on form submit.
+    const handleSubmit = async (event: any) => {
+        // Stop the form from submitting and refreshing the page.
+        event.preventDefault()
+        setLoading(true);
+
+        // Get data from the form.
+        const data = {
+            email: event.target.email.value,
+        }
+
+        // Send the data to the server in JSON format.
+        const JSONdata = JSON.stringify(data)
+
+        // API endpoint where we send form data.
+        const endpoint = '/api/form'
+
+        // Form the request for sending data to the server.
+        const options = {
+            // The method is POST because we are sending data.
+            method: 'POST',
+            // Tell the server we're sending JSON.
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // Body of the request is the JSON data we created above.
+            body: JSONdata,
+        }
+
+        // Send the form data to our forms API on Vercel and get a response.
+        const response = await fetch(endpoint, options)
+
+        // Get the response data from server as JSON.
+        // If server returns the name submitted, that means the form works.
+        const result = await response.json()
+
+        // Set the email endpoint
+        const emailEndpoint = '/api/send'
+
+        // Set the email request options
+        const emailOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: data.email,
+            }) // modify this according to your need
+        }
+
+        // Send the email
+        const emailResponse = await fetch(emailEndpoint, emailOptions)
+        const emailResult = await emailResponse.json()
+
+        if (emailResponse.status === 200) {
+            console.log('Email sent successfully:', emailResult);
+            setLoading(false);
+            setTimeout(() => {
+                if (audioRef.current) {
+                    audioRef.current.src = '/audio/ending/postcards.mp3';
+                    audioRef.current.play();
+                }
+            }, 0);
+            setSubmitted(true);
+            setTimeout(() => {
+                router.push('/end/farewell')
+            }, 4000);
+        } else {
+            console.error('Error sending email:', emailResult);
+            setLoading(false);
+        }
+
+        return result
+    }
+
     return (
         <div className="h-screen overflow-hidden flex flex-col gap-8 justify-center items-center relative">
 
@@ -62,8 +138,8 @@ const PostCards: React.FC = () => {
                 <p className="text-white/75 text-3xl max-w-4xl text-center">Just enter your email address below, and we&apos;ll send it right over to you!</p>
             </div>
 
-            <div className="relative z-10 flex flex-col items-center gap-8">
-                <input type="email" placeholder="Your e-mail address..." className="bg-white rounded-full text-center px-8 py-4 text-6xl placeholder:opacity-40 outline-none" />
+            <form onSubmit={handleSubmit} className="relative z-10 flex flex-col items-center gap-8">
+                <input type="email" name="EMAIL" required id="email" placeholder="Your e-mail address..." className="bg-white rounded-full text-center px-8 py-4 text-6xl placeholder:opacity-40 outline-none" />
                 <div className="flex gap-4">
                     <button className="button bg-white text-black" onClick={() => {
                         playClickSound();
@@ -74,18 +150,12 @@ const PostCards: React.FC = () => {
                         Skip
 
                     </button>
-                    <button className="button bg-green text-darkGreen" onClick={() => {
-                        playClickSound();
-                        setTimeout(() => {
-                            // router.push("/end/capturing");
-                        }, 1000)
-                    }}>
-                        Send it!
-                        {/* re_eXy8ADHj_6FvCGjHHRiJDGEtkynu3D8aB */}
-                    </button>
-                </div>
+                    <input type="submit" value={'Send!'} className='button bg-green text-darkGreen' />
 
-            </div>
+                </div>
+                {isLoading && <p className="text-white/75 text-3xl max-w-4xl text-center">Sending...</p>}
+                {isSubmitted && <p className="text-white/75 text-3xl max-w-4xl text-center">Postcards sent!</p>}
+            </form>
 
             <img src="/postcards.png" className="w-full max-w-7xl m-auto fixed -bottom-[10%]" alt="" />
             {/* audio refs */}
