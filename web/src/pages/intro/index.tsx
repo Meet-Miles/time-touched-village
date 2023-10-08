@@ -1,3 +1,4 @@
+import MuxPlayer from "@mux/mux-player-react";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
@@ -56,8 +57,16 @@ const Intro: React.FC = () => {
         <div className="h-screen flex flex-col gap-8 justify-center items-center relative">
 
             {/* background */}
-            <div className="absolute w-full h-full">
-                <video autoPlay muted loop className="w-full h-full object-cover " src="/video/trailer.mp4"></video>
+            <div className="absolute w-full h-full overflow-hidden">
+                <MuxPlayer
+                    className='mux-player'
+                    streamType="on-demand"
+                    playbackId="bDqHPH00GJ2cGGd2Cgqt2wIhXJtwSIz01361AGrXgiSPQ"
+                    autoPlay={true}
+                    loop={true}
+                    muted={true}
+                    thumbnailTime={0.1}
+                />
                 <div className="bg-black/50 w-full h-full absolute top-0 right-0 left-0 bottom-0"></div>
             </div>
 

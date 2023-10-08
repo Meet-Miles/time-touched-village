@@ -17,6 +17,7 @@ interface Scene {
     correctAnswerText: string
     correctAnswerNarration: string
     video: string
+    playbackId: string
     music: string
     collaborate: boolean
     startImage: string

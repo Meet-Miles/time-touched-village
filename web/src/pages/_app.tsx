@@ -1,7 +1,8 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
-import localFont from 'next/font/local'
-import Head from 'next/head'
+import '@/styles/globals.css';
+import { Analytics } from '@vercel/analytics/react';
+import type { AppProps } from 'next/app';
+import localFont from 'next/font/local';
+import Head from 'next/head';
 
 const platform = localFont({
   src: [
@@ -26,5 +27,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <link rel="icon" href="/favicon.png" />
     </Head>
     <Component {...pageProps} />
+    <Analytics />
   </main>
 }

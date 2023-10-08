@@ -126,9 +126,8 @@ const PostCards: React.FC = () => {
         <div className="h-screen overflow-hidden flex flex-col gap-8 justify-center items-center relative">
 
             {/* background */}
-            <div className="absolute w-full h-full">
-                <video autoPlay muted loop className="w-full h-full object-cover " src="/video/trailer.mp4"></video>
-                <div className="bg-black/80 w-full h-full absolute top-0 right-0 left-0 bottom-0"></div>
+            <div className="absolute w-full h-full overflow-hidden">
+                <div className="bg-black/100 w-full h-full absolute top-0 right-0 left-0 bottom-0"></div>
             </div>
 
             {/* card */}
@@ -148,7 +147,6 @@ const PostCards: React.FC = () => {
                         }, 1000)
                     }}>
                         Skip
-
                     </button>
                     <input type="submit" value={'Send!'} className='button bg-green text-darkGreen' />
 
@@ -167,3 +165,4 @@ const PostCards: React.FC = () => {
 }
 
 export default PostCards;
+

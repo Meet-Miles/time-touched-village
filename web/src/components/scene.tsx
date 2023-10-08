@@ -1,3 +1,4 @@
+import MuxPlayer from '@mux/mux-player-react';
 import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import { Choice, Scene } from '../types/scene'; // Adjust paths if necessary
@@ -234,9 +235,19 @@ const Scene: React.FC<SceneProps> = ({ data, onChoiceSelected }) => {
                                 <div className={`w-16 h-16 flex justify-center items-center rounded-full px-8 py-4 text-4xl font-bold ${selectedChoice.letter === 'A' ? `bg-green text-darkGreen` : selectedChoice.letter === 'B' ? `bg-yellow text-darkYellow` : `bg-blue text-darkBlue`}`}>{selectedChoice.letter}</div>
                                 <h1 className="text-4xl text-white  ">{selectedChoice.title}</h1>
                             </div>
-                            <video ref={videoRef} className='h-full w-full object-cover object-center' src={data.video} onEnded={() => {
+                            <MuxPlayer
+                                className='mux-player'
+                                streamType="on-demand"
+                                playbackId={data.playbackId}
+                                autoPlay={true}
+                                thumbnailTime={0.2}
+                                onEnded={() => {
+                                    setCurrentStep('correctAnswer');
+                                }}
+                            />
+                            {/* <video ref={videoRef} className='h-full w-full object-cover object-center' src={data.video} onEnded={() => {
                                 setCurrentStep('correctAnswer');
-                            }}></video>
+                            }}></video> */}
                         </div>
                     )}
                     {currentStep === 'incorrectChoice' && selectedChoice && (

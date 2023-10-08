@@ -16,7 +16,7 @@ const SceneController: React.FC<SceneControllerProps> = ({ scenes }) => {
     }
 
     return (
-        <div className="relative">
+        <div className="relative overflow-hidden">
             {/* breadcrumb */}
             <header className={`z-50 fixed top-0 right-0 left-0 flex p-8 justify-between items-center bg-gradient-to-b ${currentSceneIndex === 6 ? `from-red to-red/0` : `from-black to-black/0`}`}>
                 <div className='flex gap-2'>

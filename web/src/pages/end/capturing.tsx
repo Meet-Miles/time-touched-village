@@ -1,3 +1,4 @@
+import MuxPlayer from "@mux/mux-player-react";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 
@@ -44,8 +45,16 @@ const Capturing: React.FC = () => {
         <div className="h-screen flex flex-col gap-8 justify-center items-center relative">
 
             {/* background */}
-            <div className="absolute w-full h-full">
-                <video autoPlay muted loop className="w-full h-full object-cover " src="/video/trailer.mp4"></video>
+            <div className="absolute w-full h-full overflow-hidden">
+                <MuxPlayer
+                    className='mux-player'
+                    streamType="on-demand"
+                    playbackId="bDqHPH00GJ2cGGd2Cgqt2wIhXJtwSIz01361AGrXgiSPQ"
+                    autoPlay={true}
+                    loop={true}
+                    muted={true}
+                    thumbnailTime={0.1}
+                />
             </div>
 
             <div className="relative flex gap-8">
@@ -54,7 +63,7 @@ const Capturing: React.FC = () => {
                         opacity: showButton ? 1 : 0,
                         transition: 'all 1s ease' // Add transition effect for 1 second
                     }}
-                    className="button bg-white text-black" onClick={() => {
+                    className="button bg-white text-black z-50" onClick={() => {
                         playClickSound();
                         setTimeout(() => {
                             router.push("/end/postcards");
