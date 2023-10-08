@@ -1,6 +1,23 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import localFont from 'next/font/local'
+
+const platform = localFont({
+  src: [
+    {
+      path: './Platform-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './Platform-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-platform'
+})
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return <main className={`${platform.variable}`}><Component {...pageProps} /></main>
 }

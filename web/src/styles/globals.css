@@ -4,10 +4,22 @@
 
 .button {
     border-radius: 88px;
-    border: 10px solid #f1bf0d;
-    background: #ffca0f;
-    box-shadow: 0px 12px 0px 0px rgba(65, 51, 0, 0.2);
     transition: all 0.2s ease;
+    @apply px-8 py-4  hover:brightness-105 hover:-translate-y-2 active:translate-y-0 active:brightness-95 active:shadow-none  text-6xl font-bold;
+}
 
-    @apply px-8 py-4 hover:brightness-105 active:brightness-95 active:shadow-none text-yellow-950 text-4xl font-bold;
+* {
+    @apply font-platform;
+}
+
+h1 {
+    @apply font-bold;
+}
+
+p.medium {
+    @apply text-lg;
+}
+
+p.leading {
+    @apply text-2xl;
 }
